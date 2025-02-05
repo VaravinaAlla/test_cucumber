@@ -6,15 +6,15 @@ class LoginPage {
     return $('[data-test="error"]');
   }
 
-  open() {
-    browser.url('/');
+  async open() {
+    await browser.url('/');
   }
 
-  clickLogin() {
-    this.loginButton.click();
+  async clickLogin() {
+    await this.loginButton.click();
   }
 
-  getErrorMessage() {
+  async getErrorMessage() {
     return this.errorMessage.getText();
   }
 }

@@ -1,20 +1,19 @@
 import { Given, When, Then } from '@wdio/cucumber-framework';
-import LoginPage from '../pageobjects/login.page.js';
+import loginPage from '../pageobjects/login.page.js';
 import { expect } from '@wdio/globals';
 
-
 Given(/^User is located on the main page of saucedemo website$/, async () => {
-  await LoginPage.open();
+  await loginPage.open();
 });
 
 When(/^User clicks the "Login" button$/, async () => {
-  await LoginPage.clickLogin();
+  await loginPage.clickLogin();
 });
 
 Then(
-  /^User should see "Epic sadface: Username is required" error message$/,
-  async () => {
-    const errorMessage = await LoginPage.getErrorMessage();
-    expect(errorMessage).toEqual('Epic sadface: Username is required');
+  /^User should see "([^"]*)" error message$/,
+  async (expectedErrorMessage) => {
+    const errorMessage = await loginPage.getErrorMessage();
+    expect(errorMessage).toEqual(expectedErrorMessage);
   }
 );
